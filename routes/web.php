@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/cotacoes',"CotacoesController@index")->name('cotacoes');
+Route::get('/cotacoes_importar',"CotacoesController@importar")->name('cotacoes_importar');
+Route::get('/cotacoes_store',"CotacoesController@store")->name('cotacoes_store');

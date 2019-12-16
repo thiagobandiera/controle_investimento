@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/default.css') }}" rel="stylesheet">
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
@@ -24,6 +25,8 @@
 
     <!-- App styles -->
     <link rel="stylesheet" href="css/app.min.css">
+    
+    @stack('css')
 
 </head>
 <body data-ma-theme="blue">    
@@ -379,27 +382,21 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="">View Profile</a>
                         <a class="dropdown-item" href="">Settings</a>
-                        <a class="dropdown-item" href="">Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </div>
 
                 <ul class="navigation">
-                    <li class="navigation__active"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                    <li class="navigation__active"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
 
-                    <li class="navigation__sub">
-                        <a href=""><i class="zmdi zmdi-view-week"></i> Variants</a>
+                    <li><a href="#"><i class="zmdi zmdi-collection-plus"></i>Adicionar</a></li>
 
-                        <ul>
-                            <li><a href="hidden-sidebar.html">Hidden Sidebar</a></li>
-                            <li><a href="boxed-layout.html">Boxed Layout</a></li>
-                            <li><a href="hidden-sidebar-boxed-layout.html">Boxed Layout with Hidden Sidebar</a></li>
-                            <li><a href="top-navigation.html">Top Navigation</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i>Adicionar</a></li>
-
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i>Importar B3</a></li>
+                    <li><a href="{{ route('cotacoes') }}"><i class="zmdi zmdi-cloud-upload"></i>Importar B3</a></li>
                 </ul>
             </div>
         </aside>
@@ -480,6 +477,8 @@
         <section class="content">
             @yield('content')
         </section>
+
+         @yield('buttons')
     </main>
 
     <!-- Scripts -->
@@ -513,6 +512,8 @@
 
     <!-- App functions and actions -->
     <script src="js/app.min.js"></script>
+
+    @stack('scripts')
 
 </body>
 </html>
