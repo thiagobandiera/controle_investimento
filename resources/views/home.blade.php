@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@push('scripts')
+    <!-- Charts and maps-->
+    <script src="demo/js/other-charts.js"></script>
+    <script src="vendors/jquery.sparkline/jquery.sparkline.min.js"></script>
+@endpush
+
 @section('content')
 <div class="container">
             <header class="content__title">
