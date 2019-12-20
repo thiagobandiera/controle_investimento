@@ -6,19 +6,11 @@
     </div>
 @endsection
 
-@push('scripts')
-    <!-- Vendors: Data tables -->
-    <script src="{{ asset('vendors/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
-    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-@endpush
-
 @section('content')
     <div class="row">
         <!-- left column -->
-        <div class="col-md-12"> <!-- general form elements --> <div class="box">
+        <div class="col-md-12"> <!-- general form elements --> 
+          <div class="box">
               <!-- box-Body -->               
                 <div class="card">
                     <div class="card-body">
@@ -33,14 +25,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>16/12/2019</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>17/12/2019</td>
-                                        <td>20</td>
-                                    </tr>
+                                    @foreach ( $cotacoes as $cotacao )
+                                      <tr>
+                                          <td>{{ date("d/m/Y", strtotime($cotacao->RptDt)) }}</td>
+                                          <td>{{ $cotacao->total }}</td>
+                                      </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

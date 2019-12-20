@@ -19,6 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Importar arquivo da B3
 Route::get('/cotacoes',"CotacoesController@index")->name('cotacoes');
 Route::get('/cotacoes_importar',"CotacoesController@importar")->name('cotacoes_importar');
-Route::get('/cotacoes_store',"CotacoesController@store")->name('cotacoes_store');
+Route::post('/cotacoes_store',"CotacoesController@store")->name('cotacoes_store');
+
+//Transações
+Route::get('/transacao_comprar', 'TransacoesController@comprar')->name('transacao_comprar'); 
+Route::get('/transacao_comprar_renda_variavel', 'TransacoesController@comprarRendaVariavel')->name('transacao_comprar_renda_variavel'); 
+

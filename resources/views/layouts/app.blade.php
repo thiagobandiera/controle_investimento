@@ -17,13 +17,21 @@
     <link href="{{ asset('css/default.css') }}" rel="stylesheet">
 
     <!-- Vendor styles -->
-    <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+    <link href="{{ asset('vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css') }}" rel="stylesheet">
+
+    <!-- Dropzone -->
+    <link href="{{ asset('vendors/bower_components/dropzone/dist/dropzone.css') }}" rel="stylesheet">
+
+    <!-- Notification / Alert -->
+    <link href="{{ asset('vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
+
+
+    @stack('css')
 
     <!-- App styles -->
-    <link rel="stylesheet" href="css/app.min.css">
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet">
     
-    @stack('css')
 
 </head>
 <body data-ma-theme="blue">    
@@ -36,6 +44,7 @@
             </div>
         </div>
 
+        <!-- barra Superior -->
         <header class="header">
             <div class="navigation-trigger hidden-xl-up" data-ma-action="aside-open" data-ma-target=".sidebar">
                 <div class="navigation-trigger__inner">
@@ -365,6 +374,7 @@
             </ul>
         </header>
 
+        <!-- Menu -->
         <aside class="sidebar">
             <div class="scrollbar-inner">
                 <div class="user">
@@ -391,13 +401,22 @@
                 <ul class="navigation">
                     <li class="navigation__active"><a href="{{ route('home') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
 
-                    <li><a href="#"><i class="zmdi zmdi-collection-plus"></i>Adicionar</a></li>
+                    <li class="navigation__sub">
+                        <a href=""><i class="zmdi zmdi-collection-plus"></i>Transação</a>
+                        <ul>
+                            <li><a href="{{ route('transacao_comprar') }}">Comprar</a></li>
+                            <li><a href="#">Vender</a></li>
+                            <li><a href="#">Proventos</a></li>
+                        </ul>
+                    </li>
 
                     <li><a href="{{ route('cotacoes') }}"><i class="zmdi zmdi-cloud-upload"></i>Importar B3</a></li>
+
                 </ul>
             </div>
         </aside>
-
+    
+        <!-- Barra Superior Chat -->
         <aside class="chat">
             <div class="chat__header">
                 <h2 class="chat__title">Chat <small>Currently 20 contacts online</small></h2>
@@ -471,24 +490,43 @@
             <a href="messages.html" class="btn btn--action btn-danger"><i class="zmdi zmdi-plus"></i></a>
         </aside>
 
+        <!-- Corpo -->
         <section class="content">
+            @include('elements.alert.alert', ['errors' => $errors])
             @yield('content')
         </section>
 
          @yield('buttons')
+
     </main>
   
     <!-- Vendors Scripts -->
-    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
-    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+    <script src="{{ asset('vendors/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 
-    <!-- App functions and actions -->
-    <script src="js/app.min.js"></script>
+    <!-- Dropzone -->
+    <script src="{{ asset('vendors/bower_components/dropzone/dist/dropzone.js') }}"></script>
+
+    <!-- Datatables -->
+    <script src="{{ asset('vendors/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+
+    <!-- Notification / Alert -->
+    <script src="{{ asset('vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('vendors/bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('js/notificacoes.js') }}"></script>
 
     @stack('scripts')
+    
+    <!-- App functions and actions -->
+    <script src="{{ asset('js/app.min.js') }}"></script>
+
 
 </body>
 </html>
